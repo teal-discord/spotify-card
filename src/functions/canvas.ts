@@ -1,4 +1,4 @@
-import { FontLibrary } from "skia-canvas";
+import { registerFont } from "canvas";
 import path from "path";
 import fs from "fs";
 
@@ -224,12 +224,10 @@ export const progressBar = (
 };
 
 export const loadFonts = (FONTS: { path: string; name: string }[]) => {
-    FONTS.forEach((f) =>
-        FontLibrary.use(
-            f.name,
-            fs
-                .readdirSync(path.join(__dirname, "..", "..", "fonts", f.path))
-                .map((e) => `fonts/${f}/${e}`)
-        )
-    );
+    FONTS.forEach((f) => {
+        const fontDir = path.join(__dirname, "..", "..", "fonts", f.path);
+        fs.readdirSync(fontDir).forEach((file) => {
+            registerFont(path.join(fontDir, file), { family: f.name });
+        });
+    });
 };

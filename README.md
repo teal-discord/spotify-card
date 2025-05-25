@@ -13,7 +13,7 @@
 
 ## About <a name = "about"></a>
 
-This is a nodejs utility to generate song embeds using [skia-canvas](https://github.com/samizdatco/skia-canvas).
+This is a nodejs utility to generate song embeds using [canvas](https://github.com/Automattic/node-canvas).
 
 The package is named `spotify-card` because I wanted to only add spotify support at the beginning but I ended up adding support for other platforms. 
 

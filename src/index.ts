@@ -1,4 +1,4 @@
-import { Canvas, loadImage, FontLibrary } from "skia-canvas";
+import { createCanvas as Canvas, loadImage, registerFont } from "canvas";
 import {
     roundRect,
     roundedImage,
@@ -27,8 +27,8 @@ loadFonts([{ path: "Noto_Sans_KR", name: "NS" }]);
  */
 export const generate = async (options: GenerateOptions) => {
     options = mergeOptions(options);
-    if (options.font) FontLibrary.use(options.font.name, [options.font.path]);
-    const canvas = new Canvas(options.width, options.height);
+    if (options.font) registerFont(options.font.path, { family: options.font.name });
+    const canvas = Canvas(options.width, options.height);
     const ctx = canvas.getContext("2d");
 
     let song_data: GenericSong;
@@ -247,7 +247,7 @@ export const generate = async (options: GenerateOptions) => {
     }
 
     //Skia property directly returning the png Buffer
-    return canvas.png;
+    return canvas.toBuffer();
 };
 
 export { GenerateOptions, Platform, GenericSong, Element, CustomSongData };
