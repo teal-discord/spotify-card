@@ -17,7 +17,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/cstefFlexin/spotify-card"
+        "url": "https://github.com/teal-discord/spotify-card"
     },
     "scripts": {
         "test": "yarn jest index.test.ts",
