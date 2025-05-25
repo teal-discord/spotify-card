@@ -1,4 +1,4 @@
-import { createCanvas as Canvas, loadImage, registerFont } from "canvas";
+import { createCanvas as Canvas, loadImage, GlobalFonts } from "@napi-rs/canvas";
 import {
     roundRect,
     roundedImage,
@@ -27,7 +27,7 @@ loadFonts([{ path: "Noto_Sans_KR", name: "NS" }]);
  */
 export const generate = async (options: GenerateOptions) => {
     options = mergeOptions(options);
-    if (options.font) registerFont(options.font.path, { family: options.font.name });
+    if (options.font) GlobalFonts.registerFromPath(options.font.path, options.font.name);
     const canvas = Canvas(options.width, options.height);
     const ctx = canvas.getContext("2d");
 
@@ -247,7 +247,7 @@ export const generate = async (options: GenerateOptions) => {
     }
 
     //Skia property directly returning the png Buffer
-    return canvas.toBuffer();
+    return await canvas.encode("png");
 };
 
 export { GenerateOptions, Platform, GenericSong, Element, CustomSongData };

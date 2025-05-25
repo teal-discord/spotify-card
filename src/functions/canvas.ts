@@ -1,4 +1,4 @@
-import { registerFont } from "canvas";
+import { GlobalFonts } from "@napi-rs/canvas";
 import path from "path";
 import fs from "fs";
 
@@ -227,7 +227,7 @@ export const loadFonts = (FONTS: { path: string; name: string }[]) => {
     FONTS.forEach((f) => {
         const fontDir = path.join(__dirname, "..", "..", "fonts", f.path);
         fs.readdirSync(fontDir).forEach((file) => {
-            registerFont(path.join(fontDir, file), { family: f.name });
+            GlobalFonts.registerFromPath(path.join(fontDir, file), f.name);
         });
     });
 };

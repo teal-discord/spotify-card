@@ -28,7 +28,7 @@
         "cheerio": "^1.0.0-rc.10",
         "colorthief": "^2.3.2",
         "himalaya": "^1.1.0",
-        "canvas": "^2.11.2"
+        "@napi-rs/canvas": "^0.1.43"
     },
     "devDependencies": {
         "@types/jest": "^27.0.2",
